@@ -2,10 +2,25 @@ package com.cristo.escanf.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val GreenPrimary = Color(0xFF2E7D32)
+val GreenOnPrimary = Color(0xFFFFFFFF)
+val GreenPrimaryContainer = Color(0xFFB7F0B8)
+val GreenOnPrimaryContainer = Color(0xFF00210A)
+val OrangeSecondary = Color(0xFFEF6C00)
+val OrangeOnSecondary = Color(0xFFFFFFFF)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val BackgroundLight = Color(0xFFF8FAF5)
+val SurfaceLight = Color(0xFFFFFFFF)
+val OnSurfaceLight = Color(0xFF1A1C19)
+
+val BackgroundDark = Color(0xFF111411)
+val SurfaceDark = Color(0xFF1A1C19)
+val OnSurfaceDark = Color(0xFFE2E3DD)
+val GreenPrimaryDark = Color(0xFF9CD49D)
+
+val NutriA = Color(0xFF038141)
+val NutriB = Color(0xFF85BB2F)
+val NutriC = Color(0xFFFECB02)
+val NutriD = Color(0xFFEE8100)
+val NutriE = Color(0xFFE63E11)
+val NutriUnknown = Color(0xFF9E9E9E)
