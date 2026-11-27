@@ -1,12 +1,6 @@
 package com.cristo.escanf.core.navigation
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -14,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.cristo.escanf.core.session.UserRole
+import com.cristo.escanf.features.admin.presentation.screens.AdminScreen
 import com.cristo.escanf.features.auth.presentation.screens.LoginScreen
 import com.cristo.escanf.features.auth.presentation.screens.RegisterScreen
 import com.cristo.escanf.features.history.presentation.screens.HistoryScreen
@@ -83,20 +78,8 @@ fun AppNavHost(
         ) {
             ProductDetailScreen(onBack = { navController.popBackStack() })
         }
-
-        // TODO: se reemplaza por el panel real en el siguiente commit
-        composable(Screen.Admin.route) { AdminPlaceholder(onLogout) }
-    }
-}
-
-@Composable
-private fun AdminPlaceholder(onLogout: () -> Unit) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text("Panel de administrador")
-        Button(onClick = onLogout) { Text("Cerrar sesión") }
+        composable(Screen.Admin.route) {
+            AdminScreen(onLogout = onLogout)
+        }
     }
 }

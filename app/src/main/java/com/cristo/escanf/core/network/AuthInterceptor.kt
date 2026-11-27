@@ -26,9 +26,18 @@ class AuthInterceptor @Inject constructor(
 
         val response = chain.proceed(request)
 
-        if (response.code == 401 && token != null) {
+        if (token != null && shouldEndSession(response)) {
             runBlocking { sessionManager.clear() }
         }
         return response
+    }
+
+    /** 401 = token vencido o inválido. 403 con "bloqueada" = el admin bloqueó la cuenta. */
+    private fun shouldEndSession(response: Response): Boolean {
+        return when (response.code) {
+            401 -> true
+            403 -> response.peekBody(2048).string().contains("bloqueada", ignoreCase = true)
+            else -> false
+        }
     }
 }

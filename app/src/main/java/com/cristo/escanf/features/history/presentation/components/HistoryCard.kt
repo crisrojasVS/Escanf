@@ -118,7 +118,7 @@ fun HistoryCard(
 }
 
 @Composable
-private fun MiniNutriScore(score: NutriScore) {
+fun MiniNutriScore(score: NutriScore) {
     Box(
         modifier = Modifier
             .size(30.dp)
