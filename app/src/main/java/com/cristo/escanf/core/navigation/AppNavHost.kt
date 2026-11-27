@@ -14,6 +14,7 @@ import androidx.navigation.navArgument
 import com.cristo.escanf.core.session.UserRole
 import com.cristo.escanf.features.auth.presentation.screens.LoginScreen
 import com.cristo.escanf.features.auth.presentation.screens.RegisterScreen
+import com.cristo.escanf.features.scanner.presentation.screens.ScannerScreen
 
 @Composable
 fun AppNavHost(
@@ -48,9 +49,15 @@ fun AppNavHost(
                 onBack = { navController.popBackStack() }
             )
         }
+        composable(Screen.Scanner.route) {
+            ScannerScreen(
+                onBarcodeScanned = { barcode ->
+                    navController.navigate(Screen.ProductDetail.createRoute(barcode))
+                }
+            )
+        }
 
         // TODO: se reemplazan por las pantallas reales en commits posteriores
-        composable(Screen.Scanner.route) { Placeholder("Escáner") }
         composable(Screen.History.route) { Placeholder("Historial") }
         composable(Screen.Admin.route) { Placeholder("Panel de administrador") }
         composable(
