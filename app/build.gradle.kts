@@ -52,13 +52,13 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.runtime.compose)
 
-    implementation(libs.androidx.compose.ui.text.google.fonts)      // Google Fonts
-    implementation(libs.androidx.lifecycle.viewmodel.compose)       // viewModel()
-    implementation(libs.com.squareup.retrofit2.retrofit)            // Retrofit
-    implementation(libs.com.squareup.retrofit2.converter.json)      // Gson
-    implementation(libs.io.coil.kt.coil.compose)                    // Coil (imagen del producto)
-    implementation(libs.androidx.navigation.compose)                // Navigation
-    implementation(libs.androidx.compose.material.icons.extended)   // Íconos
+    implementation(libs.androidx.compose.ui.text.google.fonts)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.com.squareup.retrofit2.retrofit)
+    implementation(libs.com.squareup.retrofit2.converter.json)
+    implementation(libs.io.coil.kt.coil.compose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.compose.material.icons.extended)
 
     // Hilt
     implementation(libs.hilt.android)
@@ -73,12 +73,7 @@ dependencies {
     implementation(libs.mlkit.barcode.scanning)
     implementation(libs.kotlinx.coroutines.play.services)
 
-    // Room
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
-
-    // DataStore
+    // DataStore (sesión y token)
     implementation(libs.androidx.datastore.preferences)
 
     // Tests

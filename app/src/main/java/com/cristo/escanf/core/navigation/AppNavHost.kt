@@ -11,6 +11,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.cristo.escanf.core.session.UserRole
+import com.cristo.escanf.features.auth.presentation.screens.LoginScreen
+import com.cristo.escanf.features.auth.presentation.screens.RegisterScreen
 
 @Composable
 fun AppNavHost(
@@ -23,9 +26,30 @@ fun AppNavHost(
         startDestination = startDestination,
         modifier = modifier
     ) {
-        // TODO: cada Placeholder se reemplaza por su pantalla real en commits posteriores
-        composable(Screen.Login.route) { Placeholder("Login") }
-        composable(Screen.Register.route) { Placeholder("Registro") }
+        composable(Screen.Login.route) {
+            LoginScreen(
+                onLoginSuccess = { role ->
+                    val destination =
+                        if (role == UserRole.ADMIN) Screen.Admin.route else Screen.Scanner.route
+                    navController.navigate(destination) {
+                        popUpTo(navController.graph.id) { inclusive = true }
+                    }
+                },
+                onNavigateToRegister = { navController.navigate(Screen.Register.route) }
+            )
+        }
+        composable(Screen.Register.route) {
+            RegisterScreen(
+                onRegistered = {
+                    navController.navigate(Screen.Scanner.route) {
+                        popUpTo(navController.graph.id) { inclusive = true }
+                    }
+                },
+                onBack = { navController.popBackStack() }
+            )
+        }
+
+        // TODO: se reemplazan por las pantallas reales en commits posteriores
         composable(Screen.Scanner.route) { Placeholder("Escáner") }
         composable(Screen.History.route) { Placeholder("Historial") }
         composable(Screen.Admin.route) { Placeholder("Panel de administrador") }
