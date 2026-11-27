@@ -29,12 +29,18 @@ fun MainAppScreen(sessionViewModel: SessionViewModel = hiltViewModel()) {
                 CircularProgressIndicator()
             }
         }
-        else -> MainContent(sessionState)
+        else -> MainContent(
+            sessionState = sessionState,
+            onLogout = sessionViewModel::logout
+        )
     }
 }
 
 @Composable
-private fun MainContent(sessionState: SessionState) {
+private fun MainContent(
+    sessionState: SessionState,
+    onLogout: () -> Unit
+) {
     val navController = rememberNavController()
 
     // Se calcula una sola vez: la sesión que había al abrir la app.
@@ -50,7 +56,7 @@ private fun MainContent(sessionState: SessionState) {
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
     val showBottomBar = Screen.userBottomItems.any { it.route == currentRoute }
 
-    // Si se cierra la sesión (logout), regresar al login.
+    // Si se cierra la sesión (logout o token vencido), regresar al login.
     LaunchedEffect(sessionState) {
         if (sessionState is SessionState.LoggedOut) {
             val route = navController.currentDestination?.route
@@ -73,7 +79,8 @@ private fun MainContent(sessionState: SessionState) {
         AppNavHost(
             navController = navController,
             modifier = Modifier.padding(innerPadding),
-            startDestination = startDestination
+            startDestination = startDestination,
+            onLogout = onLogout
         )
     }
 }

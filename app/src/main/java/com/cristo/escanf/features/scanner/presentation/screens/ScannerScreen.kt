@@ -61,10 +61,17 @@ import com.cristo.escanf.features.scanner.data.analyzer.BarcodeAnalyzer
 import kotlinx.coroutines.delay
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Logout
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 
 @Composable
 fun ScannerScreen(
-    onBarcodeScanned: (String) -> Unit
+    onBarcodeScanned: (String) -> Unit,
+    onLogout: () -> Unit
+
 ) {
     val context = LocalContext.current
 
@@ -100,6 +107,21 @@ fun ScannerScreen(
                     )
                 }
             )
+        }
+
+        Surface(
+            color = Color.Black.copy(alpha = 0.55f),
+            shape = CircleShape,
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(12.dp)
+        ) { IconButton(onClick = onLogout) {
+                Icon(
+                    Icons.AutoMirrored.Filled.Logout,
+                    contentDescription = "Cerrar sesión",
+                    tint = Color.White
+                )
+            }
         }
 
         FilledTonalButton(

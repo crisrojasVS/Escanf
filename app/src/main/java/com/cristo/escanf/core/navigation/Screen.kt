@@ -18,13 +18,17 @@ sealed class Screen(
     data object History : Screen("history", "Historial", Icons.Default.History)
     data object Admin : Screen("admin", "Administrador", Icons.Default.AdminPanelSettings)
 
-    data object ProductDetail : Screen("product/{barcode}", "Producto") {
+    data object ProductDetail : Screen("product/{barcode}?save={save}", "Producto") {
         const val ARG_BARCODE = "barcode"
-        fun createRoute(barcode: String) = "product/$barcode"
+        const val ARG_SAVE = "save"
+        fun createRoute(barcode: String, save: Boolean = true) = "product/$barcode?save=$save"
     }
 
     companion object {
-        // Pestañas que se ven en la barra inferior (rol USER)
-        val userBottomItems = listOf(Scanner, History)
+        // Pestañas de la barra inferior (rol USER).
+        // Es un getter a propósito: si fuera un "val = listOf(...)" se evaluaría
+        // durante la inicialización de Screen y podría contener nulls.
+        val userBottomItems: List<Screen>
+            get() = listOf(Scanner, History)
     }
 }
